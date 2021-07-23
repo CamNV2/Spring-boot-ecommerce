@@ -23,22 +23,22 @@
 
                         <div class="form-checkout">
                             <div class="form-input">
-                                <input type="text" name="fullName" value="${customer.fullName}" class="input-control__login" placeholder=" ">
+                                <input type="text" name="fullName" value="${customer.fullName}" class="input-control__login" placeholder=" " required>
                                 <label class="form__label">Full Name</label>
                                 <i class="far fa-user input-icon-email"></i>
                             </div>
                             <div class="form-input">
-                                <input type="text" name="email" value="${customer.email}" class="input-control__login " placeholder=" ">
+                                <input type="text" name="email" value="${customer.email}" class="input-control__login " placeholder=" " required>
                                 <label class="form__label">Email</label>
                                 <i class="far fa-envelope input-icon-email"></i>
                             </div>
                             <div class="form-input">
-                                <input type="text" name="address" value="${customer.address}" class="input-control__login" placeholder=" ">
-                                <label class="form__label">Adress</label>
+                                <input type="text" name="address" value="${customer.address}" class="input-control__login" placeholder=" " required>
+                                <label class="form__label">Address</label>
                                 <i class="fas fa-map-marker-alt input-icon-email"></i>
                             </div>
                             <div class="form-input">
-                                <input type="text" name="phoneNumber" value="${customer.phoneNumber}" class="input-control__login " placeholder=" " maxlength="12">
+                                <input type="text" name="phoneNumber" value="${customer.phoneNumber}" class="input-control__login " placeholder=" " maxlength="12" required>
                                 <label class="form__label">Telephone</label>
                                 <i class="fas fa-phone-alt  input-icon-email"></i>
                             </div>
@@ -89,26 +89,14 @@
                                 <div class="checkout-status_price">$${totalPrice}</div>
                             </div>
                             <div class="checkout-btn-payment">
-                                <div class="input-checkbox">
-                                    <input name="paymentMethod" value="CASH_ON_DELIVERY" type="checkbox" id="delivery" >
-                                    <label for="delivery">
-                                        <span></span>
-                                        Payment on delivery
-                                    </label>
-                                    <div class="caption">
-                                        <input  name="delivery" type="submit"  style="width: 100%" class="primary-btn order-submit"  value="Payment on delivery" />
-                                    </div>
-                                </div>
-                                <div class="input-checkbox">
-                                    <input name="paymentMethod" value="CREDIT_CARD" type="checkbox" id="cash" >
-                                    <label for="cash">
-                                        <span></span>
-                                        Payment on cash
-                                    </label>
-                                    <div class="caption">
-                                        <input  name="cash" type="submit"  style="width: 100%" class="primary-btn order-submit"  value="Payment on cash" />
-                                    </div>
-                                </div>
+                                <input name="paymentMethod" value="CASH_ON_DELIVERY" type="hidden" id="delivery"  >
+                                <button href="" class=" btn-default_detail btn--payment ">
+                                    <i class="fas fa-shipping-fast detail-cart_icon"></i>
+                                    Payment on delivery</button>
+                                <a href="#" class="btn-default_detail btn--payment ml-10">
+                                    <i class="fas fa-credit-card detail-cart_icon"></i>
+                                    Payment on cash</a>
+
                             </div>
                         </div>
                     </div>

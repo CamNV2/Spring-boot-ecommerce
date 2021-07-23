@@ -11,6 +11,12 @@ import java.util.List;
 @Repository
 public interface CategoryRepository extends JpaRepository<CategoryEntity , Integer> {
 
-    @Query("select c from CategoryEntity c where c.status = 'ACTIVE'")
+    @Query("select c from CategoryEntity c where c.status = 'ACTIVE' order by c.id desc ")
     public List<CategoryEntity> getCategoryPage (Pageable page) ;
+
+    @Query("select c from CategoryEntity c where c.id = ?1")
+    public CategoryEntity findCategoryById(int id);
+
+    @Query("select c from CategoryEntity c order by c.id desc ")
+    public List<CategoryEntity> getCategoryList(Pageable page);
 }

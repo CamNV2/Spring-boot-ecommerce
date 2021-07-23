@@ -121,7 +121,7 @@
                                <a href="/changeAccount/${customer.getEmail()}">Tài khoản của tôi</a>
                            </li>
                            <li class="header__navbar-user-item">
-                               <a href="">Đơn hàng</a>
+                               <a href="/manage-order">Đơn hàng</a>
                            </li>
                            <li class="header__navbar-user-item header__navbar-user--separate">
                                <a href="/logout">Đăng xuất</a>
@@ -202,7 +202,11 @@
                                 </li>
                             </c:forEach>
                         </ul>
-                        <a href="/view-cart" class="header__cart-view btn-default btn--primary">Xem giỏ hàng</a>
+                        <div class="cart-btn_view">
+                            <a href="/view-cart" class="header__cart-view btn-default btn--primary">Xem giỏ hàng</a>
+                            <a href="/checkout" class="header__cart-view btn-default btn--primary">Thanh Toán</a>
+                        </div>
+
                     </div>
                 </div>
             </div>

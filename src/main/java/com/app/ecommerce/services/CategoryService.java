@@ -19,4 +19,17 @@ public class CategoryService {
     public List<CategoryEntity> getCategoryPage(Pageable pageable) {
         return (List<CategoryEntity>) categoryRepository.getCategoryPage(pageable) ;
     }
+    public void save(CategoryEntity entity) {
+        categoryRepository.save(entity);
+    }
+    public CategoryEntity getCategoryById(int id) {
+        CategoryEntity categoryEntity = categoryRepository.findCategoryById(id);
+        if(categoryEntity == null) {
+            System.out.println("Category Not Found!");
+        }
+        return categoryEntity ;
+    }
+    public List<CategoryEntity> getCategoryList(Pageable pageable){
+        return (List<CategoryEntity>) categoryRepository.getCategoryList(pageable) ;
+    }
 }

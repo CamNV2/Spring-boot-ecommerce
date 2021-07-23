@@ -19,7 +19,7 @@
                     <i class="fas fa-home"></i>
                     Home
                 </a>
-                <a href="" class="home-detail">
+                <a href="/view-product/${product.category.id}" class="home-detail">
                     <i class="fas fa-long-arrow-alt-right"></i>
                     ${product.category.categoryName}
                 </a>
@@ -79,10 +79,10 @@
                             <div class="product-qty">Chọn số lượng</div>
                             <div class="buttons_added">
                                 <input class="minus is-form" type="button" value="-">
-                                <form:form modelAttribute="cartItem">
+
                                     <input aria-label="quantity" class="input-qty" max="${product.quantity}" min="1" name="quantity" type="number"
                                            value="1">
-                                </form:form>
+
                                 <input class="plus is-form" type="button" value="+">
                             </div>
                             <div class="product-qty-des">${product.quantity} sản phẩm có sẵn</div>

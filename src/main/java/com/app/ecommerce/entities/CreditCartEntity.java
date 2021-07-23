@@ -28,7 +28,16 @@ public class CreditCartEntity {
 
     private String code ;
 
+    @OneToMany(mappedBy = "creditCart", fetch = FetchType.LAZY , cascade = CascadeType.ALL)
+    private List<PaymentEntity> payments ;
 
+    public List<PaymentEntity> getPayments() {
+        return payments;
+    }
+
+    public void setPayments(List<PaymentEntity> payments) {
+        this.payments = payments;
+    }
 
     public int getId() {
         return id;

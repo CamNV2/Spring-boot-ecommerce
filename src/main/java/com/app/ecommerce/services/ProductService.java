@@ -46,18 +46,17 @@ public class ProductService {
     public List<ProductEntity> getProductByCategoryPageable(int id , Pageable pageable) {
         return (List<ProductEntity>) productRepository.findProductByCategoryPageable(id , pageable) ;
     }
-    public List<ProductEntity> getProductActiveSort(Pageable pageable) {
-        return (List<ProductEntity>) productRepository.getProductActiveSort(pageable) ;
-    }
-    public List<ProductEntity> getProductSortAsc(Pageable pageable) {
-        return (List<ProductEntity>) productRepository.getProductActiveSortAsc(pageable) ;
-    }
+
+
     public List<ProductEntity> searchProductByCate(int id){
         List<ProductEntity> productEntities = productRepository.findProductByCategory(id) ;
         return productEntities ;
     }
     public List<Integer> countProductByCategory(){
         return productRepository.countProductByCategory();
+    }
+    public List<Integer> countProductByCategoryDESC(){
+        return productRepository.countProductByCategoryDESC();
     }
     public List<ProductEntity> getProductByCateId(int id) {
         return (List<ProductEntity>) productRepository.getProductByCate(id) ;
@@ -71,13 +70,21 @@ public class ProductService {
         return (List<ProductEntity>) productRepository.getProductSale(pageable) ;
     }
     public List<ProductEntity> getProductByPriceASC(Pageable pageable) {
-        return (List<ProductEntity>) productRepository.getProductActiveSortAsc(pageable) ;
+        return (List<ProductEntity>) productRepository.getProductByPriceAsc(pageable) ;
     }
     public List<ProductEntity> getProductPriceDESC(Pageable pageable) {
         return (List<ProductEntity>) productRepository.getProductByPriceDESC(pageable) ;
     }
     public void save (ProductEntity productEntity) {
         productRepository.save(productEntity) ;
+    }
+    public List<ProductEntity> getOldProduct(Pageable pageable) {
+        List<ProductEntity> productEntities = productRepository.getOldProduct(pageable);
+        return productEntities ;
+    }
+    public List<ProductEntity> getNewProduct(Pageable pageable) {
+        List<ProductEntity> productEntities = productRepository.getNewProduct(pageable);
+        return productEntities ;
     }
 
 }

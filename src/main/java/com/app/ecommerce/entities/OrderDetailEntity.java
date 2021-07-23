@@ -21,7 +21,17 @@ public class OrderDetailEntity implements Serializable {
     @JoinColumn(name = "product_id")
     private ProductEntity products ;
 
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private OrderEntity orderEntity;
 
+    public OrderEntity getOrderEntity() {
+        return orderEntity;
+    }
+
+    public void setOrderEntity(OrderEntity orderEntity) {
+        this.orderEntity = orderEntity;
+    }
 
     public int getId() {
         return id;

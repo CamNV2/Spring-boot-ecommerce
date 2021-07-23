@@ -124,23 +124,23 @@
 }
 .heading-container {
     width: 100%;
-    padding: 20px 10px;
+    padding: 40px 10px 20px;
     background-color: #fff;
     border-radius: 4px;
     box-shadow: 0 1px 1rem 0 rgb(0 0 0 / 20%);
     display: flex;
     justify-content: space-between;
-    align-items: centers;
+    align-items: center;
 }
 .heading-title {
     display: flex;
-    align-items: center;
 }
 .home-link {
     font-size: 2.2rem;
 }
 .title-heading {
     padding: 0 10px;
+    margin-top: 8px;
 }
 
 .form-search {
@@ -157,7 +157,7 @@
     padding: 6px 16px;
     border: 1px solid;
     border-color: #fff;
-    border-radius: 4px;
+    border-radius: 4px 0 0 4px;
     background-color: #f8f9fc;
 }
 .input_control:focus {
@@ -166,7 +166,7 @@
 
 .btn__default {
     min-width: 60px;
-    height: 40px;
+    height: 38px;
     text-decoration: none;
     border: none;
     border-radius: 2px;
@@ -262,6 +262,7 @@ table{
 /* Form Action*/
 .heading-title{
     width: 100%;
+    margin-bottom: 20px;
 }
 
 .title_action{
@@ -328,7 +329,7 @@ table{
     color: #4e73df;
 }
 option {
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 .form__label{
     display: none;
@@ -372,4 +373,40 @@ option {
 }
 .pd-10{
     margin-top: 25px;
+}
+.flex-table {
+    display: flex;
+    justify-content: space-between;
+}
+.order-item__price {
+    display: flex;
+    font-size: 1rem;
+    justify-content: flex-start;
+}
+.order-price__current {
+    margin-right: 10px;
+    font-weight: 500;
+    color: #fe6432;
+}
+.item-price__old {
+    text-decoration: line-through;
+    color: #777;
+}
+.price-total{
+    color: #fe6432;
+}
+.pd-30 {
+    padding-left: 30px !important;
+}
+.product-image {
+    width: 100px;
+    height: 80px;
+    background-size: 100%;
+}
+.form-search-date{
+    display: flex;
+    justify-content: space-around;
+}
+.mt-20 {
+    margin-left: 20px !important;
 }

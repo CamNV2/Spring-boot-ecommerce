@@ -27,7 +27,7 @@
     </li>
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" >
+        <a class="nav-link collapsed" href="/admin/category-list" >
             <i class="fas fa-fw fa-wrench"></i>
             <span>Category</span>
         </a>
@@ -35,7 +35,7 @@
     </li>
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="/admin/order-list">
             <i class="fas fa-fw fa-folder"></i>
             <span>Order</span>
         </a>

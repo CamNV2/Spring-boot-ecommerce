@@ -1,15 +1,16 @@
 package com.app.ecommerce.controller;
 
 import com.app.ecommerce.config.SecurityUtils;
+import com.app.ecommerce.entities.OrderEntity;
 import com.app.ecommerce.entities.UserEntity;
-import com.app.ecommerce.services.CategoryService;
-import com.app.ecommerce.services.ProductService;
-import com.app.ecommerce.services.UserRoleService;
-import com.app.ecommerce.services.UserService;
+import com.app.ecommerce.enums.OrderStatus;
+import com.app.ecommerce.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,9 @@ import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -33,6 +37,10 @@ public class HomeController {
 
     @Autowired
     public CategoryService categoryService ;
+    @Autowired
+    OrderService orderService ;
+    @Autowired
+    JavaMailSender mailSender ;
 
     @RequestMapping(value = {"/" , "/home"} , method = RequestMethod.GET)
     public String home (Model model,
@@ -53,9 +61,9 @@ public class HomeController {
         }
         Pageable pageable = PageRequest.of(page , size);
         Pageable pageableCate = PageRequest.of(pageCate, sizeCate) ;
-        model.addAttribute("products" , productService.getProductActiveSort(pageable));
+        model.addAttribute("products" , productService.getNewProduct(pageable));
         model.addAttribute("productSale" , productService.getProductSale(pageable));
-        model.addAttribute("productHot" , productService.getProductSortAsc(pageable));
+        model.addAttribute("productHot" , productService.getOldProduct(pageable));
         model.addAttribute("categories" , categoryService.getCategoryPage(pageableCate)) ;
 
         return "index" ;
@@ -104,7 +112,7 @@ public class HomeController {
             UserEntity userEntity = userService.findByEmail(username) ;
             model.addAttribute("customer" , userEntity) ;
         }
-        model.addAttribute("products" , productService.getProductActiveSort(pageable));
+        model.addAttribute("products" , productService.getNewProduct(pageable));
         model.addAttribute("categories" , categoryService.getCategories()) ;
         model.addAttribute("countProduct" , productService.countProductByCategory());
         model.addAttribute("page" , page) ;
@@ -198,4 +206,43 @@ public class HomeController {
         model.addAttribute("status" , "sort-desc") ;
         return "user/view-product" ;
     }
+
+    @RequestMapping("/manage-order")
+    public String viewOrder(Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = principal.toString();
+        if(principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername() ;
+        }
+        model.addAttribute("customer" , userService.findByEmail(username));
+        model.addAttribute("orders" , orderService.findOrderByAccount(username)) ;
+
+        return "user/manage-order" ;
+    }
+    @RequestMapping("/search-order-by-id/{id}")
+    public String orderDetail(Model model ,
+                             @PathVariable("id") int id) {
+        Object pricipal = SecurityContextHolder.getContext().getAuthentication().getPrincipal() ;
+        String username = pricipal.toString();
+        if(pricipal instanceof UserDetails) {
+            username = ((UserDetails) pricipal).getUsername();
+        }
+        UserEntity userEntity = userService.findByEmail(username);
+        model.addAttribute("customer" , userEntity) ;
+        model.addAttribute("order" , orderService.findOrderById(id));
+        return "user/order-detail" ;
+    }
+
+    @RequestMapping("/change-status-cancel/{id}")
+    public String changeStatusCancel(Model model,
+                                     @PathVariable("id") int id,
+                                     HttpServletRequest request) {
+        String url = request.getHeader("referer") ;
+        OrderEntity orderEntity = orderService.findOrderById(id) ;
+        orderEntity.setStatus(OrderStatus.CANCEL);
+        orderService.save(orderEntity);
+
+        return "redirect:" + url ;
+    }
+
 }

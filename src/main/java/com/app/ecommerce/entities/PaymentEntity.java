@@ -26,7 +26,37 @@ public class PaymentEntity {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date paymentDate ;
 
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private OrderEntity orders;
 
+    @ManyToOne
+    @JoinColumn(name = "credit_cart_id")
+    private CreditCartEntity creditCart ;
+
+    public OrderEntity getOrders() {
+        return orders;
+    }
+
+    public void setOrders(OrderEntity orders) {
+        this.orders = orders;
+    }
+
+    public CreditCartEntity getCreditCart() {
+        return creditCart;
+    }
+
+    public void setCreditCart(CreditCartEntity creditCart) {
+        this.creditCart = creditCart;
+    }
+
+    public OrderEntity getOrder() {
+        return orders;
+    }
+
+    public void setOrder(OrderEntity order) {
+        this.orders = order;
+    }
 
     public int getId() {
         return id;

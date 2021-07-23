@@ -68,7 +68,6 @@ public class CartController {
         }
         UserEntity userEntity = userService.findByEmail(username) ;
         model.addAttribute("customer" , userEntity) ;
-        System.out.println(cartItems.size());
         model.addAttribute("cartItem" , orderDetail);
         session.setAttribute("cartItems" , cartItems);
         session.setAttribute("date" , new Date());
